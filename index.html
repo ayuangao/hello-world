@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+  <input oninput="myinput(this)" autocomplete="off"/>
+  <input id="hiddenInput" type="text" style="display: none">
+  <input type="button" value="发送" id="sendBtn">
+  <script>
+    let trueValue = [];//保存真实数据的数组
+    let beforeLength = 0;//隐藏框value的长度
+    function myinput(self) {
+      let nowLength = self.value.length;// 变化后的长度
+      if(nowLength > beforeLength){//长度增加时
+        trueValue.push(self.value[nowLength-1]);
+        ++beforeLength;
+      }else{//长度减少时
+        trueValue.pop();
+        --beforeLength;
+      }
+      document.getElementById('hiddenInput').value = trueValue.join('');//数组转化为字符串，并填充入隐藏框
+      let nowValue = '';//转换为圆点
+      for(let i = 0; i < nowLength; ++i){
+        nowValue += '•';
+      }
+      self.value = nowValue;
+    }
+    document.getElementById('sendBtn').addEventListener('click',function(){
+      console.log(document.getElementById('hiddenInput').value);//取到隐藏框的值
+    })
+  </script>
+</body>
+</html>
