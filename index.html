@@ -5,11 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+      .result{
+        background: gray;
+        width: 300px;
+        height: 300px;
+        color: red;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
 </head>
 <body>
   <input oninput="myinput(this)" autocomplete="off"/>
   <input id="hiddenInput" type="text" style="display: none">
   <input type="button" value="发送" id="sendBtn">
+  <div class="result">
+    <div id="receive"></div>
+  </div>
   <script>
     let trueValue = [];//保存真实数据的数组
     let beforeLength = 0;//隐藏框value的长度
@@ -31,6 +45,8 @@
     }
     document.getElementById('sendBtn').addEventListener('click',function(){
       console.log(document.getElementById('hiddenInput').value);//取到隐藏框的值
+      var text = document.getElementById('hiddenInput').value;//取到隐藏框的值
+      var receive = document.getElementById('receive').innerText = text;
     })
   </script>
 </body>
